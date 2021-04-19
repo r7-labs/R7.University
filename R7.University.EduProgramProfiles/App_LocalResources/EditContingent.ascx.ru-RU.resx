@@ -60,12 +60,6 @@
 	<data name="labelActualBC.Help" xml:space="preserve">
 		<value>Численность обучающихся за счет средств физических и (или) юридических лиц, человек / из них иностранных граждан.</value>
 	</data>
-	<data name="lblActualForeign.Text" xml:space="preserve">
-        <value>Численность обучающихся, являющихся иностранными гражданами, человек.</value>
-    </data>
-    <data name="lblActualForeign.Help" xml:space="preserve">
-        <value>Количество обучающихся иностранных студентов, человек.</value>
-    </data>
 	<data name="labelAdmittedFB.Text" xml:space="preserve">
         <value>Федеральный бюджет:</value>
     </data>

@@ -60,13 +60,7 @@
 	<data name="labelActualBC.Help" xml:space="preserve">
 		<value>Students financed by contracts, number of people / including foreign citizents.</value>
 	</data>
-	<data name="lblActualForeign.Text" xml:space="preserve">
-        <value>Foreign:</value>
-    </data>
-    <data name="lblActualForeign.Help" xml:space="preserve">
-        <value>Foreign citizens students, number of people.</value>
-    </data>
-    <data name="labelAdmittedFB.Text" xml:space="preserve">
+	<data name="labelAdmittedFB.Text" xml:space="preserve">
         <value>Federal Budget:</value>
     </data>
     <data name="labelAdmittedFB.Help" xml:space="preserve">

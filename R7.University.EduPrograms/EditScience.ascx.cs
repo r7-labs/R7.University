@@ -9,7 +9,6 @@ using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
-using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms
 {
@@ -51,17 +50,6 @@ namespace R7.University.EduPrograms
             textDirections.Text = item.Directions;
             txtResults.Text = item.Results;
             textBase.Text = item.Base;
-
-            textScientists.Text = item.Scientists.ToString ();
-            textStudents.Text = item.Students.ToString ();
-            textMonographs.Text = item.Monographs.ToString ();
-            textArticles.Text = item.Articles.ToString ();
-            textArticlesForeign.Text = item.ArticlesForeign.ToString ();
-            textPatents.Text = item.Patents.ToString ();
-            textPatentsForeign.Text = item.PatentsForeign.ToString ();
-            textCertificates.Text = item.Certificates.ToString ();
-            textCertificatesForeign.Text = item.CertificatesForeign.ToString ();
-            textFinancingByScientist.Text = item.FinancingByScientist.ToDecimalString ();
         }
 
         protected override void BeforeUpdateItem (ScienceInfo item, bool isNew)
@@ -69,17 +57,6 @@ namespace R7.University.EduPrograms
             item.Directions = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textDirections.Text)));
             item.Results = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (txtResults.Text)));
             item.Base = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textBase.Text)));
-
-            item.Scientists = ParseHelper.ParseToNullable<int> (textScientists.Text);
-            item.Students = ParseHelper.ParseToNullable<int> (textStudents.Text);
-            item.Monographs = ParseHelper.ParseToNullable<int> (textMonographs.Text);
-            item.Articles = ParseHelper.ParseToNullable<int> (textArticles.Text);
-            item.ArticlesForeign = ParseHelper.ParseToNullable<int> (textArticlesForeign.Text);
-            item.Patents = ParseHelper.ParseToNullable<int> (textPatents.Text);
-            item.PatentsForeign = ParseHelper.ParseToNullable<int> (textPatentsForeign.Text);
-            item.Certificates = ParseHelper.ParseToNullable<int> (textCertificates.Text);
-            item.CertificatesForeign = ParseHelper.ParseToNullable<int> (textCertificatesForeign.Text);
-            item.FinancingByScientist = ParseHelper.ParseToNullable<decimal> (textFinancingByScientist.Text);
         }
 
         string StripScripts (string html)

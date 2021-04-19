@@ -11,15 +11,5 @@ namespace R7.University.EduPrograms
         protected TextEditor textDirections;
         protected TextEditor txtResults;
         protected TextEditor textBase;
-        protected TextBox textScientists;
-        protected TextBox textStudents;
-        protected TextBox textMonographs;
-        protected TextBox textArticles;
-        protected TextBox textArticlesForeign;
-        protected TextBox textPatents;
-        protected TextBox textPatentsForeign;
-        protected TextBox textCertificates;
-        protected TextBox textCertificatesForeign;
-        protected TextBox textFinancingByScientist;
     }
 }

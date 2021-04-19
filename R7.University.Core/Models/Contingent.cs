@@ -1,5 +1,3 @@
-using System;
-
 namespace R7.University.Models
 {
     public interface IContingent
@@ -23,9 +21,6 @@ namespace R7.University.Models
         int? ActualMB { get; }
 
         int? ActualBC { get; }
-
-        [Obsolete]
-        int? ActualForeign { get; }
 
         int? ActualForeignFB { get; }
 
@@ -76,9 +71,6 @@ namespace R7.University.Models
 
         new int? ActualBC { get; set; }
 
-        [Obsolete]
-        new int? ActualForeign { get; set; }
-
         new int? ActualForeignFB { get; set; }
 
         new int? ActualForeignRB { get; set; }
@@ -127,9 +119,6 @@ namespace R7.University.Models
         public int? ActualMB { get; set; }
 
         public int? ActualBC { get; set; }
-
-        [Obsolete]
-        public int? ActualForeign { get; set; }
 
         public int? ActualForeignFB { get; set; }
 

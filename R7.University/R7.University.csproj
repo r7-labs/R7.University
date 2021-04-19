@@ -372,6 +372,7 @@
     <Content Include="SqlDataProvider\02.07.00.dnn.sql" />
     <Content Include="SqlDataProvider\02.07.00_PostInstall.dnn.sql" />
     <Content Include="SqlDataProvider\02.08.00.dnn.sql" />
+    <Content Include="SqlDataProvider\02.10.00.dnn.sql" />
     <Content Include="SqlDataProvider\Uninstall.dnn.sql" />
     <Content Include="SqlDataProvider\01.01.02.dnn.sql" />
     <Content Include="SqlDataProvider\01.01.03.dnn.sql" />
