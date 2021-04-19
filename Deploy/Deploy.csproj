@@ -60,6 +60,7 @@
 		<Reference Include="System" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Include="BumpVersion.ps1" />
 		<None Include="__Defaults.targets" />
 		<None Include="__Settings.targets" />
 		<None Include="InstallPackage.targets" />
