@@ -114,16 +114,13 @@
     <data name="DocumentSortIndex.Column" xml:space="preserve">
         <value>Индекс</value>
     </data>
-    <data name="DocumentStartDate.Column" xml:space="preserve">
-        <value>Начало</value>
-    </data>
-    <data name="DocumentEndDate.Column" xml:space="preserve">
-        <value>Окончание</value>
-    </data>
 	<data name="FileName.Invalid" xml:space="preserve">
         <value>Имя выбранного файла не соответствует проверочному выражению &quot;{regex}&quot; для выбранного типа документа.</value>
     </data>
 	<data name="SystemDocumentType_StateEduStandard.Text" xml:space="preserve">
 		<value>Федеральный государственный образовательный стандарт</value>
+	</data>
+	<data name="DocumentStartEndDates_Column.Text" xml:space="preserve">
+		<value>Даты начала и окончания</value>
 	</data>
 </root>

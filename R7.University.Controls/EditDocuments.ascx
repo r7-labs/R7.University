@@ -41,8 +41,7 @@
                     <asp:BoundField DataField="Group" HeaderText="DocumentGroup.Column" />
                     <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
 					<asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex.Column" />
-                    <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate.Column" DataFormatString="{0:d}" />
-                    <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate.Column" DataFormatString="{0:d}" />
+                    <asp:BoundField DataField="StartEndDates" HeaderText="DocumentStartEndDates_Column.Text" />
                 </Columns>
             </asp:GridView>
         </div>

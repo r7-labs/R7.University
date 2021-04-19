@@ -104,6 +104,17 @@ namespace R7.University.Controls.EditModels
             UniversityUrlHelper.FormatNiceDocumentUrl (Url, Context.Module.ModuleId, Context.Module.TabId,
                 Context.Module.PortalId, Context.LocalResourceFile);
 
+        [JsonIgnore]
+        public string StartEndDates {
+            get {
+                if (StartDate == null && EndDate == null) {
+                    return string.Empty;
+                }
+
+                return $"{StartDate?.ToShortDateString () ?? "-"} / {EndDate?.ToShortDateString () ?? "-"}";
+            }
+        }
+
         #endregion
     }
 }

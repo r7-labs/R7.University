@@ -114,16 +114,13 @@
     <data name="DocumentSortIndex.Column" xml:space="preserve">
         <value>Sort Index</value>
     </data>
-    <data name="DocumentStartDate.Column" xml:space="preserve">
-        <value>Start Date</value>
-    </data>
-    <data name="DocumentEndDate.Column" xml:space="preserve">
-        <value>End Date</value>
-    </data>
 	<data name="FileName.Invalid" xml:space="preserve">
         <value>Name of the selected file doesn't match validation expression &quot;{regex}&quot; for the selected document type.</value>
     </data>
 	<data name="SystemDocumentType_StateEduStandard.Text" xml:space="preserve">
 		<value>State Educational Standard</value>
+	</data>
+	<data name="DocumentStartEndDates_Column.Text" xml:space="preserve">
+		<value>Start and End Dates</value>
 	</data>
 </root>
