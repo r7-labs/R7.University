@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University", "R7.University\R7.University.csproj", "{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}"
@@ -346,6 +346,6 @@ Global
 		$52.inheritsSet = null
 		$52.inheritsScope = text/plain
 		$52.scope = text/x-cshtml
-		version = 2.9.0
+		version = 2.10.0
 	EndGlobalSection
 EndGlobal
