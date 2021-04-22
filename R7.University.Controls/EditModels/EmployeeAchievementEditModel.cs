@@ -40,7 +40,7 @@ namespace R7.University.Controls.EditModels
         {
             var viewModel = new EmployeeAchievementEditModel ();
             CopyCstor.Copy<IEmployeeAchievementWritable> (model, viewModel);
-            viewModel.Context = context;
+            viewModel.Dnn = context;
 
             if (model.Achievement != null) {
                 viewModel.Title = model.Achievement.Title;
@@ -120,7 +120,7 @@ namespace R7.University.Controls.EditModels
         {
             get {
                 return UniversityFormatHelper.FormatYears (YearBegin, YearEnd,
-                                                 Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
+                                                 Localization.GetString ("AtTheMoment.Text", Dnn.LocalResourceFile));
             }
         }
 
@@ -131,7 +131,7 @@ namespace R7.University.Controls.EditModels
 
                 // TODO: Don't create new object here?
                 var achievementType = (AchievementTypeId != null) ? new AchievementTypeInfo { Type = Type } : null;
-                return achievementType.Localize (Context.LocalResourceFile);
+                return achievementType.Localize (Dnn.LocalResourceFile);
             }
         }
 
@@ -146,8 +146,8 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         public string FormattedUrl =>
-            UniversityUrlHelper.FormatNiceDocumentUrl (DocumentURL, Context.Module.ModuleId, Context.Module.TabId,
-                Context.Module.PortalId, Context.LocalResourceFile);
+            UniversityUrlHelper.FormatNiceDocumentUrl (DocumentURL, Dnn.Module.ModuleId, Dnn.Module.TabId,
+                Dnn.Module.PortalId, Dnn.LocalResourceFile);
 
         #endregion
     }

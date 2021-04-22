@@ -22,7 +22,7 @@ namespace R7.University.Controls.EditModels
             viewModel.DivisionTitle = model.Division.Title;
             viewModel.StartDate = model.Division.StartDate;
             viewModel.EndDate = model.Division.EndDate;
-            viewModel.Context = context;
+            viewModel.Dnn = context;
 
             return viewModel;
         }

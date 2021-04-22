@@ -16,7 +16,7 @@ namespace R7.University.Controls.EditModels
         public override IEditModel<OccupiedPositionInfo> Create (OccupiedPositionInfo model, ViewModelContext context)
         {
             var editModel = CopyCstor.New<OccupiedPositionEditModel, IOccupiedPositionWritable> (model);
-            editModel.Context = context;
+            editModel.Dnn = context;
             editModel.PositionTitle = model.Position.Title;
             editModel.DivisionTitle = model.Division.Title;
             editModel.DivisionStartDate = model.Division.StartDate;

@@ -28,7 +28,7 @@ namespace R7.University.EditModels
     {
         int ViewItemID { get; set; }
 
-        ViewModelContext Context { get; set; }
+        ViewModelContext Dnn { get; set; }
 
         ModelEditState EditState { get; set; }
 

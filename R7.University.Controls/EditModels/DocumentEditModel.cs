@@ -24,7 +24,7 @@ namespace R7.University.Controls.EditModels
 
             // FIXME: Context not updated for referenced viewmodels
             viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
-            viewModel.Context = viewContext;
+            viewModel.Dnn = viewContext;
 
             return viewModel;
         }
@@ -94,15 +94,15 @@ namespace R7.University.Controls.EditModels
         {
             get {
                 return LocalizationHelper.GetStringWithFallback (
-                    "SystemDocumentType_" + DocumentTypeViewModel.Type + ".Text", Context.LocalResourceFile, DocumentTypeViewModel.Type
+                    "SystemDocumentType_" + DocumentTypeViewModel.Type + ".Text", Dnn.LocalResourceFile, DocumentTypeViewModel.Type
                 );
             }
         }
 
         [JsonIgnore]
         public string FormattedUrl =>
-            UniversityUrlHelper.FormatNiceDocumentUrl (Url, Context.Module.ModuleId, Context.Module.TabId,
-                Context.Module.PortalId, Context.LocalResourceFile);
+            UniversityUrlHelper.FormatNiceDocumentUrl (Url, Dnn.Module.ModuleId, Dnn.Module.TabId,
+                Dnn.Module.PortalId, Dnn.LocalResourceFile);
 
         [JsonIgnore]
         public string StartEndDates {
@@ -129,8 +129,8 @@ namespace R7.University.Controls.EditModels
                 }
 
                 return
-                    $"<a href=\"{UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId)}\""
-                    + $" title=\"{Context.LocalizeString("SignatureLink_Tooltip.Text")}\"><i class=\"fas fa-signature\"></i></a>";
+                    $"<a href=\"{UniversityUrlHelper.LinkClickFile (sigFile.FileId, Dnn.Module.TabId, Dnn.Module.ModuleId)}\""
+                    + $" title=\"{Dnn.LocalizeString("SignatureLink_Tooltip.Text")}\"><i class=\"fas fa-signature\"></i></a>";
             }
         }
 

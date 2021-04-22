@@ -11,7 +11,7 @@ namespace R7.University.Controls.EditModels
         public int ViewItemID { get; set; } = ViewNumerator.GetNextItemID ();
 
         [JsonIgnore]
-        public ViewModelContext Context { get; set; }
+        public ViewModelContext Dnn { get; set; }
 
         [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState PrevEditState { get; set; } = ModelEditState.Unchanged;

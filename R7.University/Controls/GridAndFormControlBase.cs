@@ -162,7 +162,7 @@ namespace R7.University.Controls
         protected TViewModel DebugEnsureCreatedProperly (TViewModel viewModel)
         {
             Debug.Assert (viewModel != null);
-            Debug.Assert (viewModel.Context != null);
+            Debug.Assert (viewModel.Dnn != null);
 
             return viewModel;
         }
@@ -253,7 +253,7 @@ namespace R7.University.Controls
 
                 // rebind viewmodels to the context
                 foreach (var form in items) {
-                    form.Context = ViewModelContext;
+                    form.Dnn = ViewModelContext;
                 }
 
                 BindItems (items);
@@ -378,7 +378,7 @@ namespace R7.University.Controls
 
                         // rebind viewmodels to context
                         foreach (var form in items) {
-                            form.Context = ViewModelContext;
+                            form.Dnn = ViewModelContext;
                         }
 
                         BindItems (items);
@@ -410,7 +410,7 @@ namespace R7.University.Controls
 
                         // rebind viewmodels to context
                         foreach (var form in items) {
-                            form.Context = ViewModelContext;
+                            form.Dnn = ViewModelContext;
                         }
 
                         BindItems (items);

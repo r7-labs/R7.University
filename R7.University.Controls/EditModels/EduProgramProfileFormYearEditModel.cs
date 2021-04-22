@@ -32,7 +32,7 @@ namespace R7.University.Controls.EditModels
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
             viewModel.HasEduVolume = model.EduVolume != null;
             viewModel.HasContingent = model.Contingent != null;
-            viewModel.Context = context;
+            viewModel.Dnn = context;
 
             return viewModel;
         }
@@ -105,7 +105,7 @@ namespace R7.University.Controls.EditModels
         [JsonIgnore]
         public string EduFormTitleLocalized {
             get {
-                EduFormViewModel.Context = Context;
+                EduFormViewModel.Context = Dnn;
                 return EduFormViewModel.TitleLocalized;
             }
         }
@@ -118,11 +118,11 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         public string EditEduVolumeUrl =>
-            Context.Module.EditUrl (HasEduVolume ? "eduvolume_id" : "eduprogramprofileformyear_id", EduProgramProfileFormYearId.ToString (), "EditEduVolume");
+            Dnn.Module.EditUrl (HasEduVolume ? "eduvolume_id" : "eduprogramprofileformyear_id", EduProgramProfileFormYearId.ToString (), "EditEduVolume");
 
         [JsonIgnore]
         public string EditContingentUrl =>
-            Context.Module.EditUrl (HasContingent ? "contingent_id" : "eduprogramprofileformyear_id", EduProgramProfileFormYearId.ToString (), "EditContingent");
+            Dnn.Module.EditUrl (HasContingent ? "contingent_id" : "eduprogramprofileformyear_id", EduProgramProfileFormYearId.ToString (), "EditContingent");
 
         [JsonIgnore]
         public bool EditReferencedEntitiesActionsVisible => EditState != ModelEditState.Added;

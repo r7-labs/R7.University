@@ -18,7 +18,7 @@ namespace R7.University.Controls.EditModels
             var viewModel = new EduProgramProfileFormEditModel ();
             CopyCstor.Copy<IEduProgramProfileFormWritable> (model, viewModel);
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
-            viewModel.Context = context;
+            viewModel.Dnn = context;
 
             return viewModel;
         }
@@ -66,7 +66,7 @@ namespace R7.University.Controls.EditModels
         public string EduFormTitleLocalized
         {
             get {
-                EduFormViewModel.Context = Context;
+                EduFormViewModel.Context = Dnn;
                 return EduFormViewModel.TitleLocalized;
             }
         }
