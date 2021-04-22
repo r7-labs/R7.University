@@ -14,12 +14,12 @@ using R7.University.Components;
 using R7.University.Configuration;
 using R7.University.ControlExtensions;
 using R7.University.Dnn;
+using R7.University.Dnn.Modules;
 using R7.University.EduPrograms.Models;
 using R7.University.EduPrograms.Queries;
 using R7.University.EduPrograms.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Modules;
 using R7.University.Queries;
 
 namespace R7.University.EduPrograms

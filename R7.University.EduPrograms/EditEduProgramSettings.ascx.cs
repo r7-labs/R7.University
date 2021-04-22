@@ -27,10 +27,10 @@ using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Text;
+using R7.University.Dnn.Modules;
 using R7.University.EduPrograms.Models;
 using R7.University.EduPrograms.Queries;
 using R7.University.Models;
-using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.ViewModels;
 
@@ -78,7 +78,7 @@ namespace R7.University.EduPrograms
         {
             comboEduProgram.DataSource = new EduProgramQuery (ModelContext).ListByEduLevel (eduLevelId)
                 .Select (ep => new { Value = ep.EduProgramID, Text = UniversityFormatHelper.FormatEduProgramTitle (ep.Code, ep.Title) });
-            
+
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
@@ -107,7 +107,7 @@ namespace R7.University.EduPrograms
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
-      
+
         /// <summary>
         /// handles updating the module settings for this control
         /// </summary>

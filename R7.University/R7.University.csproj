@@ -223,6 +223,8 @@
     <Compile Include="Controls\EditModels\EditModelBase.cs" />
     <Compile Include="Controls\GridAndFormControlBase.cs" />
     <Compile Include="Dnn\ModuleDefinitions.cs" />
+    <Compile Include="Dnn\Modules\UniversityEditPortalModuleBase.cs" />
+    <Compile Include="Dnn\Modules\UniversityModuleSettingsBase.cs" />
     <Compile Include="Dnn\UniversityGlobals.cs" />
     <Compile Include="Dnn\UniversityIcons.cs" />
     <Compile Include="ModelExtensions\DocumentDnnExtensions.cs" />
@@ -289,8 +291,6 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Security\IModuleSecurityContext.cs" />
-    <Compile Include="Modules\UniversityModuleSettingsBase.cs" />
-    <Compile Include="Modules\UniversityEditPortalModuleBase.cs" />
     <Compile Include="Data\Mappings\AchievementTypeConfiguration.cs" />
     <Compile Include="ModelExtensions\AchievementTypeDnnExtensions.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
@@ -344,7 +344,6 @@
     <Folder Include="Queries\" />
     <Folder Include="Commands\" />
     <Folder Include="Security\" />
-    <Folder Include="Modules\" />
     <Folder Include="EditModels\" />
     <Folder Include="Client\" />
     <Folder Include="assets\" />

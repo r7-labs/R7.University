@@ -25,8 +25,8 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Controls;
 using R7.University.ControlExtensions;
+using R7.University.Dnn.Modules;
 using R7.University.Launchpad.Models;
-using R7.University.Modules;
 
 namespace R7.University.Launchpad
 {
@@ -58,7 +58,7 @@ namespace R7.University.Launchpad
         /// Handles the loading of the module setting for this control
         /// </summary>
         public override void LoadSettings ()
-        { 
+        {
             try {
                 if (!IsPostBack) {
                     // TODO: Allow select nearest pagesize value

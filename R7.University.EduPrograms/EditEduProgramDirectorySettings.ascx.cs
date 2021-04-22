@@ -5,9 +5,9 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Controls;
 using R7.University.ControlExtensions;
+using R7.University.Dnn.Modules;
 using R7.University.EduPrograms.Models;
 using R7.University.Models;
-using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.ViewModels;
 

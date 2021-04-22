@@ -13,11 +13,11 @@ using R7.University.Components;
 using R7.University.Configuration;
 using R7.University.ControlExtensions;
 using R7.University.Dnn;
+using R7.University.Dnn.Modules;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.SharedLogic;
 
