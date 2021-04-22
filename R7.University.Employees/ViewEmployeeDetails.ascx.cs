@@ -18,6 +18,7 @@ using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Urls;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Configuration;
 using R7.University.Dnn;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;

@@ -22,6 +22,7 @@
 using R7.University.Components;
 using Xunit;
 using System.IO;
+using R7.University.Configuration;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization;
 
@@ -37,7 +38,7 @@ namespace R7.University.Tests
             using (var configReader = new StringReader (File.ReadAllText (configFile))) {
                 var deserializer = new DeserializerBuilder ().WithNamingConvention (HyphenatedNamingConvention.Instance).Build ();
                 Assert.NotNull (deserializer.Deserialize<UniversityPortalConfig> (configReader));
-            } 
+            }
         }
     }
 }

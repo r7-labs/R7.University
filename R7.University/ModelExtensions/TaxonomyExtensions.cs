@@ -26,6 +26,7 @@ using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Models;
 using R7.University.Components;
+using R7.University.Configuration;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -84,7 +85,7 @@ namespace R7.University.ModelExtensions
             catch (Exception ex) {
                 Exceptions.LogException (new Exception ($"Error creating/updating {termName} term in the vocabulary {vocabularyName}.", ex));
             }
-        
+
             return null;
         }
 

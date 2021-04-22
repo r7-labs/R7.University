@@ -24,6 +24,7 @@ using System.Web;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules.Settings;
 using R7.University.Components;
+using R7.University.Configuration;
 
 namespace R7.University.Employees.Models
 {

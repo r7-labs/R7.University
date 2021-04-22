@@ -237,7 +237,6 @@
     <Compile Include="Models\VCard.cs" />
     <Compile Include="Models\VCardPhone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Components\UniversityController.cs" />
     <Compile Include="Templates\UniversityTemplateEngineManager.cs" />
     <Compile Include="Utilities\UniversityFileHelper.cs" />
     <Compile Include="Utilities\Utils.cs" />
@@ -245,8 +244,8 @@
     <Compile Include="ViewModels\ViewNumerator.cs" />
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
     <Compile Include="ViewModels\UniversityFormatHelper.cs" />
-    <Compile Include="Components\UniversityConfig.cs" />
-    <Compile Include="Components\UniversityPortalConfig.cs" />
+    <Compile Include="Configuration\UniversityConfig.cs" />
+    <Compile Include="Configuration\UniversityPortalConfig.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
@@ -336,7 +335,7 @@
     <Folder Include="ControlExtensions\" />
     <Folder Include="Data\" />
     <Folder Include="Properties\" />
-    <Folder Include="Components\" />
+    <Folder Include="Configuration\" />
     <Folder Include="Utilities\" />
     <Folder Include="ViewModels\" />
     <Folder Include="SharedLogic\" />

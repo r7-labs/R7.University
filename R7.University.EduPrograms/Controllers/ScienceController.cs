@@ -27,6 +27,7 @@ using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Configuration;
 using R7.University.Models;
 using R7.University.EduPrograms.Models;
 using R7.University.EduPrograms.Queries;

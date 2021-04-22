@@ -26,6 +26,7 @@ using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Localization;
 using R7.University.Components;
+using R7.University.Configuration;
 using R7.University.ControlExtensions;
 
 namespace R7.University.SharedLogic
@@ -50,7 +51,7 @@ namespace R7.University.SharedLogic
                 textWorkingHours.Text = workingHours;
         }
 
-        // TODO: Need separate methods to get and update 
+        // TODO: Need separate methods to get and update
         public static string Update (DropDownList comboWorkingHours, string workingHours, bool addToVocabulary)
         {
             workingHours = workingHours.Trim ();
@@ -64,7 +65,7 @@ namespace R7.University.SharedLogic
                     var voc = vocCtrl.GetVocabularies ().SingleOrDefault (v => v.Name == UniversityConfig.Instance.Vocabularies.WorkingHours);
                     if (voc != null) {
                         var termCtrl = new TermController ();
-                        termCtrl.AddTerm (new Term (workingHours, "", voc.VocabularyId)); 
+                        termCtrl.AddTerm (new Term (workingHours, "", voc.VocabularyId));
                         vocCtrl.ClearVocabularyCache ();
                     }
                 }

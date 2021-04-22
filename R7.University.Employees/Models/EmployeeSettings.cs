@@ -24,6 +24,7 @@ using System.Web;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules.Settings;
 using R7.University.Components;
+using R7.University.Configuration;
 
 namespace R7.University.Employees.Models
 {
@@ -39,10 +40,10 @@ namespace R7.University.Employees.Models
                 PhotoWidth = UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
             }
         }
- 
+
         /// <summary>
-        /// Gets or sets the EmployeeID setting value. 
-        /// Use <see cref="EmployeePortalModuleBase.GetEmployee()"/> 
+        /// Gets or sets the EmployeeID setting value.
+        /// Use <see cref="EmployeePortalModuleBase.GetEmployee()"/>
         /// and <see cref="EmployeePortalModuleBase.GetEmployeeId()"/>
         /// to get employee info in the view contols.
         /// </summary>

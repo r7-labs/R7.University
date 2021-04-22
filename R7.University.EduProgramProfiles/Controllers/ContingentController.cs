@@ -34,6 +34,7 @@ using R7.University.Models;
 using R7.University.Queries;
 using R7.University.ModelExtensions;
 using R7.Dnn.Extensions.Models;
+using R7.University.Configuration;
 
 namespace R7.University.EduPrograms.Controllers
 {

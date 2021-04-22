@@ -27,6 +27,7 @@ using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Configuration;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.EduProgramProfiles.Queries;
 using R7.University.EduProgramProfiles.ViewModels;
@@ -62,7 +63,7 @@ namespace R7.University.EduPrograms.Controllers
 
             return new EduVolumeDirectoryViewModel {
                 Settings = settings,
-                EduVolumeViewModels = 
+                EduVolumeViewModels =
                     GetEduVolumesForEduVolumeDirectory (settings.DivisionId, settings.EduLevelIds, settings.DivisionLevel)
                         .Select (ev => new EduVolumeViewModel (ev, viewModelContext))
             };
