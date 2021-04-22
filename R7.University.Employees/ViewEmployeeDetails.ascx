@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
-<%@ Import Namespace="R7.University.Components" %>
+<%@ Import Namespace="R7.University.Configuration" %>
 
 <dnn:JavaScriptLibraryInclude runat="server" Name="React" />
 <dnn:JavaScriptLibraryInclude runat="server" Name="ReactDOM" />

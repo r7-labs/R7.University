@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ViewLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.ViewLaunchpad" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
+<%@ Import Namespace="R7.University.Dnn" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 
@@ -41,7 +42,7 @@
 							<asp:TemplateField>
 								<ItemTemplate>
 					                	<asp:HyperLink id="linkEdit" runat="server">
-					                		<asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+					                		<asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
 					                	</asp:HyperLink>
 					            </ItemTemplate>
 					        </asp:TemplateField>
@@ -74,7 +75,7 @@
 						<asp:TemplateField>
 			               <ItemTemplate>
 			                	<asp:HyperLink id="linkEdit" runat="server">
-			                		<asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+			                		<asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
 			                	</asp:HyperLink>
 			               </ItemTemplate>
 			        	</asp:TemplateField>
@@ -127,7 +128,7 @@
 						<asp:TemplateField>
 			               <ItemTemplate>
 			                	<asp:HyperLink id="linkEdit" runat="server">
-			                		<asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+			                		<asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
 			                	</asp:HyperLink>
 			               </ItemTemplate>
 			        	</asp:TemplateField>
@@ -179,7 +180,7 @@
 						<asp:TemplateField>
 			               <ItemTemplate>
 			                	<asp:HyperLink id="linkEdit" runat="server">
-			                		<asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+			                		<asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
 			                	</asp:HyperLink>
 			               </ItemTemplate>
 			        	</asp:TemplateField>
@@ -211,7 +212,7 @@
                         <asp:TemplateField>
                            <ItemTemplate>
                                 <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                    <asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
                                 </asp:HyperLink>
                            </ItemTemplate>
                         </asp:TemplateField>
@@ -243,7 +244,7 @@
                         <asp:TemplateField>
                            <ItemTemplate>
                                 <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                    <asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
                                 </asp:HyperLink>
                            </ItemTemplate>
                         </asp:TemplateField>
@@ -276,7 +277,7 @@
                         <asp:TemplateField>
                            <ItemTemplate>
                                 <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                    <asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
                                 </asp:HyperLink>
                            </ItemTemplate>
                         </asp:TemplateField>
@@ -312,7 +313,7 @@
                         <asp:TemplateField>
                            <ItemTemplate>
                                 <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                    <asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
                                 </asp:HyperLink>
                            </ItemTemplate>
                         </asp:TemplateField>
@@ -353,7 +354,7 @@
                         <asp:TemplateField>
                            <ItemTemplate>
                                 <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                    <asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
                                 </asp:HyperLink>
                            </ItemTemplate>
                         </asp:TemplateField>
@@ -386,7 +387,7 @@
                         <asp:TemplateField>
                            <ItemTemplate>
                                 <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                    <asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
                                 </asp:HyperLink>
                            </ItemTemplate>
                         </asp:TemplateField>
@@ -419,7 +420,7 @@
                         <asp:TemplateField>
                            <ItemTemplate>
                                 <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                    <asp:Image runat="server" ImageUrl="<%# UniversityIcons.Edit %>" />
                                 </asp:HyperLink>
                            </ItemTemplate>
                         </asp:TemplateField>

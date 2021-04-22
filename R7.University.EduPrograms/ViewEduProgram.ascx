@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEduProgram.ascx.cs" Inherits="R7.University.EduPrograms.ViewEduProgram" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Import Namespace="R7.University.Dnn" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 
@@ -47,7 +48,7 @@
                     <ItemTemplate>
                         <div class="card card-body bg-light mb-3">
                             <h3 runat="server" class='<%# Item.CssClass %>'>
-                                <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Item.Edit_Url %>' ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Item.Edit_Url %>' ImageUrl="<%# UniversityIcons.Edit %>" />
                                 <%# Item.Title_String %>
                             </h3>
                             <p>

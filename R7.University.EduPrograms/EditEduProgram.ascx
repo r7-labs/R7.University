@@ -7,6 +7,7 @@
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDivisions" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDivisions.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
+<%@ Import Namespace="R7.University.Dnn" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/admin.css" Priority="200" />
@@ -71,14 +72,14 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:HyperLink runat="server"
-										ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>"
+										ImageUrl="<%# UniversityIcons.Edit %>"
 										NavigateUrl='<%# Eval ("Edit_Url") %>'
 										Visible="<%# SecurityContext.IsAdmin %>"
 										ToolTip='<%# LocalizeString ("EditEduProgramProfile.Action") %>'
 										Style="margin-right:.5em"
 									/>
 									<asp:HyperLink runat="server"
-										ImageUrl="<%# R7.University.Components.UniversityIcons.EditDocuments %>"
+										ImageUrl="<%# UniversityIcons.EditDocuments %>"
 										NavigateUrl='<%# Eval ("EditDocuments_Url") %>'
 										ToolTip='<%# LocalizeString ("EditEduProgramProfileDocuments.Action") %>'
 									/>

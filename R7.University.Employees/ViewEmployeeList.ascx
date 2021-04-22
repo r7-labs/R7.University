@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ViewEmployeeList.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeList" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
+<%@ Import Namespace="R7.University.Dnn" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 
@@ -15,7 +16,7 @@
 			</div>
 			<div class="col-md-10">
 				<asp:HyperLink id="linkEdit" runat="server" CssClass="_editlink">
-					<asp:Image id="imageEdit" runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" AlternateText="Edit" ResourceKey="Edit" />
+					<asp:Image id="imageEdit" runat="server" ImageUrl="<%# UniversityIcons.Edit %>" AlternateText="Edit" ResourceKey="Edit" />
 				</asp:HyperLink>
 				<asp:HyperLink id="linkFullName" runat="server" CssClass="_fullname" />
 				<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
