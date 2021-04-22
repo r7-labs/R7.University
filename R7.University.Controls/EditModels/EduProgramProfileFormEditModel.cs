@@ -13,12 +13,12 @@ namespace R7.University.Controls.EditModels
         #region EditModelBase implementation
 
         public override IEditModel<EduProgramProfileFormInfo> Create (
-            EduProgramProfileFormInfo model, ViewModelContext context)
+            EduProgramProfileFormInfo model, ViewModelContext dnn)
         {
             var viewModel = new EduProgramProfileFormEditModel ();
             CopyCstor.Copy<IEduProgramProfileFormWritable> (model, viewModel);
-            viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
-            viewModel.Dnn = context;
+            viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, dnn);
+            viewModel.Dnn = dnn;
 
             return viewModel;
         }

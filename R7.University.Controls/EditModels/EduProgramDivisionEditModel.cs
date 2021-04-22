@@ -14,7 +14,7 @@ namespace R7.University.Controls.EditModels
     {
         #region EditModelBase implementation
 
-        public override IEditModel<EduProgramDivisionInfo> Create (EduProgramDivisionInfo model, ViewModelContext context)
+        public override IEditModel<EduProgramDivisionInfo> Create (EduProgramDivisionInfo model, ViewModelContext dnn)
         {
             var viewModel = new EduProgramDivisionEditModel ();
 
@@ -22,7 +22,7 @@ namespace R7.University.Controls.EditModels
             viewModel.DivisionTitle = model.Division.Title;
             viewModel.StartDate = model.Division.StartDate;
             viewModel.EndDate = model.Division.EndDate;
-            viewModel.Dnn = context;
+            viewModel.Dnn = dnn;
 
             return viewModel;
         }

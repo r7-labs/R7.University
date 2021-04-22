@@ -36,11 +36,11 @@ namespace R7.University.Controls.EditModels
             return achievement;
         }
 
-        public override IEditModel<EmployeeAchievementInfo> Create (EmployeeAchievementInfo model, ViewModelContext context)
+        public override IEditModel<EmployeeAchievementInfo> Create (EmployeeAchievementInfo model, ViewModelContext dnn)
         {
             var viewModel = new EmployeeAchievementEditModel ();
             CopyCstor.Copy<IEmployeeAchievementWritable> (model, viewModel);
-            viewModel.Dnn = context;
+            viewModel.Dnn = dnn;
 
             if (model.Achievement != null) {
                 viewModel.Title = model.Achievement.Title;

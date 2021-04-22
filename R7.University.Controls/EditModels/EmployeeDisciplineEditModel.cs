@@ -17,7 +17,7 @@ namespace R7.University.Controls.EditModels
         [JsonIgnore]
         public override bool IsPublished => ModelHelper.IsPublished (HttpContext.Current.Timestamp, ProfileStartDate, ProfileEndDate);
 
-        public override IEditModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext context)
+        public override IEditModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext dnn)
         {
             var viewModel = new EmployeeDisciplineEditModel ();
             CopyCstor.Copy<IEmployeeDisciplineWritable> (model, viewModel);

@@ -15,7 +15,7 @@ namespace R7.University.Controls.EditModels
     {
         #region EditModelBase implementation
 
-        public override IEditModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
+        public override IEditModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext dnn)
         {
             var viewModel = new DocumentEditModel ();
             CopyCstor.Copy<IDocumentWritable> (model, viewModel);
@@ -23,8 +23,8 @@ namespace R7.University.Controls.EditModels
             CopyCstor.Copy<ITrackableEntityWritable> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
-            viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
-            viewModel.Dnn = viewContext;
+            viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, dnn);
+            viewModel.Dnn = dnn;
 
             return viewModel;
         }

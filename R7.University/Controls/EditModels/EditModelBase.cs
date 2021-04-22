@@ -23,7 +23,7 @@ namespace R7.University.Controls.EditModels
 
         public abstract TModel CreateModel ();
 
-        public abstract IEditModel<TModel> Create (TModel model, ViewModelContext context);
+        public abstract IEditModel<TModel> Create (TModel model, ViewModelContext dnn);
 
         public abstract void SetTargetItemId (int targetItemId, string targetItemKey);
 

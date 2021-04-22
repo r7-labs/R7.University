@@ -13,10 +13,10 @@ namespace R7.University.Controls.EditModels
     {
         #region EditModelBase implementation
 
-        public override IEditModel<OccupiedPositionInfo> Create (OccupiedPositionInfo model, ViewModelContext context)
+        public override IEditModel<OccupiedPositionInfo> Create (OccupiedPositionInfo model, ViewModelContext dnn)
         {
             var editModel = CopyCstor.New<OccupiedPositionEditModel, IOccupiedPositionWritable> (model);
-            editModel.Dnn = context;
+            editModel.Dnn = dnn;
             editModel.PositionTitle = model.Position.Title;
             editModel.DivisionTitle = model.Division.Title;
             editModel.DivisionStartDate = model.Division.StartDate;

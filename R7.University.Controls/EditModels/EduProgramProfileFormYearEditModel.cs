@@ -16,23 +16,23 @@ namespace R7.University.Controls.EditModels
         #region EditModelBase implementation
 
         public IEditModel<EduProgramProfileFormYearInfo> Create (
-            EduProgramProfileFormYearInfo model, ViewModelContext context, IYear lastYear)
+            EduProgramProfileFormYearInfo model, ViewModelContext dnn, IYear lastYear)
         {
-            var viewModel = (EduProgramProfileFormYearEditModel) Create (model, context);
+            var viewModel = (EduProgramProfileFormYearEditModel) Create (model, dnn);
             viewModel.YearString = model.Year.FormatWithCourse (lastYear);
             return viewModel;
         }
 
         public override IEditModel<EduProgramProfileFormYearInfo> Create (
-            EduProgramProfileFormYearInfo model, ViewModelContext context)
+            EduProgramProfileFormYearInfo model, ViewModelContext dnn)
         {
             var viewModel = new EduProgramProfileFormYearEditModel ();
             CopyCstor.Copy<IEduProgramProfileFormYearWritable> (model, viewModel);
             CopyCstor.Copy<IPublishableEntityWritable> (model, viewModel);
-            viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
+            viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, dnn);
             viewModel.HasEduVolume = model.EduVolume != null;
             viewModel.HasContingent = model.Contingent != null;
-            viewModel.Dnn = context;
+            viewModel.Dnn = dnn;
 
             return viewModel;
         }
