@@ -302,7 +302,6 @@
     <Compile Include="Commands\UpdateEduProgramDivisionCommand.cs" />
     <Compile Include="Components\UniversityIcons.cs" />
     <Compile Include="ViewModels\FormatExtensions.cs" />
-    <Compile Include="Components\UniversityAssembly.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileFormYearConfiguration.cs" />
     <Compile Include="Data\Mappings\YearConfiguration.cs" />
     <Compile Include="EditModels\ModelEditState.cs" />
