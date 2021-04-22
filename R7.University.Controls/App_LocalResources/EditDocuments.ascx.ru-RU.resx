@@ -123,4 +123,10 @@
 	<data name="DocumentStartEndDates_Column.Text" xml:space="preserve">
 		<value>Даты начала и окончания</value>
 	</data>
+	<data name="DocumentSignature_Column.Text" xml:space="preserve">
+		<value>ЭЦП</value>
+	</data>
+	<data name="SignatureLink_Tooltip.Text" xml:space="preserve">
+		<value>Цифровая подпись</value>
+	</data>
 </root>

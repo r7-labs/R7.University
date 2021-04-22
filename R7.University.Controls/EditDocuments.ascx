@@ -40,6 +40,7 @@
                     <asp:BoundField DataField="Title" HeaderText="DocumentTitle.Column" />
                     <asp:BoundField DataField="Group" HeaderText="DocumentGroup.Column" />
                     <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
+	                <asp:BoundField DataField="SignatureLink" HeaderText="DocumentSignature_Column.Text" HtmlEncode="false" />
 					<asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex.Column" />
                     <asp:BoundField DataField="StartEndDates" HeaderText="DocumentStartEndDates_Column.Text" />
                 </Columns>

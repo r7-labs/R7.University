@@ -123,4 +123,10 @@
 	<data name="DocumentStartEndDates_Column.Text" xml:space="preserve">
 		<value>Start and End Dates</value>
 	</data>
+	<data name="DocumentSignature_Column.Text" xml:space="preserve">
+		<value>Digital Signature</value>
+	</data>
+	<data name="SignatureLink_Tooltip.Text" xml:space="preserve">
+		<value>Digital Signature</value>
+	</data>
 </root>

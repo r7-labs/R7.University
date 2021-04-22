@@ -115,6 +115,25 @@ namespace R7.University.Controls.EditModels
             }
         }
 
+        [JsonIgnore]
+        public string SignatureLink {
+            get {
+                var documentFile = UniversityFileHelper.Instance.GetFileByUrl (Url);
+                if (documentFile == null) {
+                    return string.Empty;
+                }
+
+                var sigFile = UniversityFileHelper.Instance.GetSignatureFile (documentFile);
+                if (sigFile == null) {
+                    return string.Empty;
+                }
+
+                return
+                    $"<a href=\"{UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId)}\""
+                    + $" title=\"{Context.LocalizeString("SignatureLink_Tooltip.Text")}\"><i class=\"fas fa-signature\"></i></a>";
+            }
+        }
+
         #endregion
     }
 }
