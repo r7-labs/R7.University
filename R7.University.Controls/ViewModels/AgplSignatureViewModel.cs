@@ -8,16 +8,16 @@ namespace R7.University.Controls.ViewModels
     {
         public bool ShowRule { get; set; } = true;
 
-        public virtual Assembly BaseAssembly => UniversityAssembly.GetCoreAssembly ();
+        public Assembly BaseAssembly => UniversityAssembly.GetCoreAssembly ();
 
-        public virtual string Name => BaseAssembly.GetName ().Name;
+        public string Name => BaseAssembly.GetName ().Name;
 
-        public virtual Version Version => BaseAssembly.GetName ().Version;
+        public Version Version => BaseAssembly.GetName ().Version;
 
-        public virtual string InformationalVersion =>
+        public string InformationalVersion =>
             BaseAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute> ()?.InformationalVersion;
 
-        public virtual string Product =>
+        public string Product =>
             BaseAssembly.GetCustomAttribute<AssemblyProductAttribute> ()?.Product ?? Name;
     }
 }
