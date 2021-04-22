@@ -36,6 +36,7 @@ using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Urls;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Dnn;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
 using R7.University.Employees.SharedLogic;
@@ -145,18 +146,18 @@ namespace R7.University.Employees
                         this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
                     }
                 }
-                						
+
                 // display module only in edit mode and only if we have published data to display
                 ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished (now));
-										
+
                 // display module content only if it exists and published (or in edit mode)
                 var displayContent = hasData && (IsEditable || employee.IsPublished (now));
 
                 panelEmployee.Visible = displayContent;
-				
+
                 if (displayContent) {
                     if (Settings.AutoTitle) {
-                        UniversityModuleHelper.UpdateModuleTitle (TabModuleId, 
+                        UniversityModuleHelper.UpdateModuleTitle (TabModuleId,
                             UniversityFormatHelper.AbbrName (employee.FirstName, employee.LastName, employee.OtherName)
                         );
                     }
@@ -211,13 +212,13 @@ namespace R7.University.Employees
                 .Select (ach => new EmployeeAchievementViewModel (ach, new ViewModelContext (this)))
                 .Where (ach => ach.IsTitle)
                 .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
-			
+
             var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
                 labelAcademicDegreeAndTitle.Visible = false;
-	        
+
             BindContacts (employee);
         }
 
@@ -286,41 +287,41 @@ namespace R7.University.Employees
                 var employee = GetEmployee ();
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("AddEmployee.Action"),
-                    ModuleActionType.AddContent, 
-                    "", 
+                    ModuleActionType.AddContent,
+                    "",
                     UniversityIcons.Add,
                     EditUrl ("EditEmployee"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
                     employee == null && SecurityContext.CanAdd (typeof (EmployeeInfo)),
                     false
                 );
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("EditEmployee.Action"),
-                    ModuleActionType.EditContent, 
-                    "", 
+                    ModuleActionType.EditContent,
+                    "",
                     UniversityIcons.Edit,
                     EditUrl ("employee_id", employee?.EmployeeID.ToString (), "EditEmployee"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
-                    employee != null, 
+                    employee != null,
                     false
                 );
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("Details.Action"),
-                    ModuleActionType.ContentOptions, 
-                    "", 
+                    ModuleActionType.ContentOptions,
+                    "",
                     UniversityIcons.Details,
                     EditUrl ("employee_id", employee?.EmployeeID.ToString (), "EmployeeDetails"),
-                    false, 
+                    false,
                     SecurityAccessLevel.View,
-                    employee != null, 
+                    employee != null,
                     false
                 );
 

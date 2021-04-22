@@ -38,6 +38,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Divisions.Models;
 using R7.University.Divisions.Queries;
+using R7.University.Dnn;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
@@ -75,7 +76,7 @@ namespace R7.University.Divisions
 
         protected string SearchText
         {
-            get { 
+            get {
                 var objSearchText = Session ["DivisionDirectory.SearchText." + TabModuleId];
                 return (string) objSearchText ?? string.Empty;
             }
@@ -84,7 +85,7 @@ namespace R7.University.Divisions
 
         protected int SearchDivision
         {
-            get { 
+            get {
                 var objSearchDivision = Session ["DivisionDirectory.SearchDivision." + TabModuleId];
                 return objSearchDivision != null ? (int) objSearchDivision : Null.NullInteger;
 
@@ -94,7 +95,7 @@ namespace R7.University.Divisions
 
         protected bool SearchIncludeSubdivisions
         {
-            get { 
+            get {
                 var objSearchIncludeSubdivisions = Session ["DivisionDirectory.SearchIncludeSubdivisions." + TabModuleId];
                 return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : true;
 
@@ -157,12 +158,12 @@ namespace R7.University.Divisions
 
             if (Settings.Mode == DivisionDirectoryMode.Search) {
                 // display search hint
-                this.Message ("SearchHint.Info", MessageType.Info, true); 
+                this.Message ("SearchHint.Info", MessageType.Info, true);
 
                 var now = HttpContext.Current.Timestamp;
                 var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
                     .Where (d => d.IsPublished (now) || IsEditable);
-                
+
                 treeDivisions.DataSource = divisions;
                 treeDivisions.DataBind ();
 
@@ -193,7 +194,7 @@ namespace R7.University.Divisions
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
-            
+
             try {
                 if (Settings.Mode == DivisionDirectoryMode.Search) {
                     if (!IsPostBack) {
@@ -307,14 +308,14 @@ namespace R7.University.Divisions
         protected void linkSearch_Click (object sender, EventArgs e)
         {
             var searchText = textSearch.Text.Trim ();
-            var searchDivision = (treeDivisions.SelectedNode != null) ? 
+            var searchDivision = (treeDivisions.SelectedNode != null) ?
                 int.Parse (treeDivisions.SelectedNode.Value) : Null.NullInteger;
-           
+
             if (SearchParamsOK (searchText, searchDivision)) {
                 // save current search
                 SearchText = searchText;
                 SearchDivision = searchDivision;
-               
+
                 // perform search
                 DoSearch (SearchText, SearchDivision);
             }
@@ -331,7 +332,7 @@ namespace R7.University.Divisions
         protected void gridDivisions_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             var now = HttpContext.Current.Timestamp;
-            
+
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
@@ -405,7 +406,7 @@ namespace R7.University.Divisions
                 var headEmployee = new HeadEmployeesQuery (ModelContext)
                     .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
                     .FirstOrDefault (he => he.IsPublished (now));
-                
+
                 if (headEmployee != null) {
                     literalHeadEmployee.Text = "<a href=\""
                     + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")

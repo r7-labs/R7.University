@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.IO;
 using R7.University.Components;
+using R7.University.Dnn;
 
 namespace R7.University.Templates
 {

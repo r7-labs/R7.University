@@ -223,6 +223,8 @@
     <Compile Include="Controls\EditModels\EditModelBase.cs" />
     <Compile Include="Controls\GridAndFormControlBase.cs" />
     <Compile Include="Dnn\ModuleDefinitions.cs" />
+    <Compile Include="Dnn\UniversityGlobals.cs" />
+    <Compile Include="Dnn\UniversityIcons.cs" />
     <Compile Include="ModelExtensions\DocumentDnnExtensions.cs" />
     <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
     <Compile Include="ModelExtensions\EduFormExtensions.cs" />
@@ -301,7 +303,6 @@
     <Compile Include="ModelExtensions\TaxonomyExtensions.cs" />
     <Compile Include="Data\Mappings\EduProgramDivisionConfiguration.cs" />
     <Compile Include="Commands\UpdateEduProgramDivisionCommand.cs" />
-    <Compile Include="Components\UniversityIcons.cs" />
     <Compile Include="ViewModels\FormatExtensions.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileFormYearConfiguration.cs" />
     <Compile Include="Data\Mappings\YearConfiguration.cs" />
@@ -327,7 +328,6 @@
     <Compile Include="Templates\EmployeeModelToTemplateBinder.cs" />
     <Compile Include="Templates\UniversityModelToTemplateBinderBase.cs" />
     <Compile Include="Templates\UniversityTemplateHelper.cs" />
-    <Compile Include="Components\UniversityGlobals.cs" />
     <Compile Include="Properties\SolutionInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

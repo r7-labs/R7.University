@@ -6,6 +6,7 @@ using DotNetNuke.Security;
 using R7.Dnn.Extensions.Text;
 using R7.University.Commands;
 using R7.University.Components;
+using R7.University.Dnn;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;

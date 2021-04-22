@@ -1,5 +1,6 @@
 using DotNetNuke.Entities.Portals;
 using R7.University.Components;
+using R7.University.Dnn;
 using R7.University.Models;
 
 namespace R7.University.Templates

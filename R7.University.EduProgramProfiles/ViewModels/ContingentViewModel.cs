@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Dnn;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;

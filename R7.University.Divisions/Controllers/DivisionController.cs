@@ -30,6 +30,7 @@ using R7.University.Components;
 using R7.University.Divisions.Models;
 using R7.University.Divisions.Queries;
 using R7.University.Divisions.ViewModels;
+using R7.University.Dnn;
 using R7.University.Models;
 using R7.University.Security;
 

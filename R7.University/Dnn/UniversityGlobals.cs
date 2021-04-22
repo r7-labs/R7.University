@@ -1,6 +1,6 @@
 using DotNetNuke.Common;
 
-namespace R7.University.Components
+namespace R7.University.Dnn
 {
     public static class UniversityGlobals
     {

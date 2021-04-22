@@ -5,6 +5,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using R7.University.Components;
+using R7.University.Dnn;
 using R7.University.Models;
 
 namespace R7.University.Launchpad
