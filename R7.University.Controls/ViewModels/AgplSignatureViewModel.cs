@@ -16,5 +16,8 @@ namespace R7.University.Controls.ViewModels
 
         public virtual string InformationalVersion =>
             BaseAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute> ()?.InformationalVersion;
+
+        public virtual string Product =>
+            BaseAssembly.GetCustomAttribute<AssemblyProductAttribute> ()?.Product ?? Name;
     }
 }
