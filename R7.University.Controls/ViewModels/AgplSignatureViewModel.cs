@@ -8,7 +8,7 @@ namespace R7.University.Controls.ViewModels
     {
         public bool ShowRule { get; set; } = true;
 
-        public Assembly BaseAssembly => UniversityAssembly.GetCoreAssembly ();
+        public Assembly BaseAssembly => UniversityAssembly.GetBaseAssembly ();
 
         public string Name => BaseAssembly.GetName ().Name;
 
