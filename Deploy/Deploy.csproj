@@ -72,9 +72,6 @@
 		<None Include="GenerateManifest.ps1" />
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="Dummy.cs" />
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\R7.University\R7.University.csproj">
 			<Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
 			<Name>R7.University</Name>
