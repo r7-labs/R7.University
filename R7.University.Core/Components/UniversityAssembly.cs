@@ -11,12 +11,12 @@ namespace R7.University.Components
 
         public static string SafeGetInformationalVersion (int fieldCount)
         {
-            var coreAssembly = GetBaseAssembly ();
-            var attr = coreAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute> ();
+            var baseAssembly = GetBaseAssembly ();
+            var attr = baseAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute> ();
             if (attr != null) {
                 return attr.InformationalVersion;
             }
-            return coreAssembly.GetName ().Version.ToString (fieldCount);
+            return baseAssembly.GetName ().Version.ToString (fieldCount);
         }
     }
 }
