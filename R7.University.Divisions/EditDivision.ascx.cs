@@ -8,6 +8,7 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Divisions.Models;
 using R7.University.Divisions.Queries;
+using R7.University.Dnn;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;

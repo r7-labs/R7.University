@@ -1,4 +1,4 @@
-namespace R7.University.Components
+namespace R7.University.Dnn
 {
     public class ModuleDefinitions
     {

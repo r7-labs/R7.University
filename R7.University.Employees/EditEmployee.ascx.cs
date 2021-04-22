@@ -11,6 +11,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
+using R7.University.Dnn;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
 using R7.University.ModelExtensions;
