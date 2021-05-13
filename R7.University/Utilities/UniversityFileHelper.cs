@@ -31,6 +31,9 @@ namespace R7.University.Utilities
         {
             var folder = FolderManager.Instance.GetFolder (file.FolderId);
             var sigFile = FileManager.Instance.GetFile (folder, file.FileName + ".sig");
+            if (sigFile == null) {
+                sigFile = FileManager.Instance.GetFile (folder, file.FileName + ".p7s");
+            }
             return sigFile;
         }
     }
