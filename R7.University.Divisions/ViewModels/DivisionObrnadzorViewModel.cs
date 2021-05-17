@@ -1,43 +1,23 @@
-//
-//  DivisionObrnadzorViewModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DotNetNuke.Common;
-using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Divisions.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.UI;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Divisions
 {
     internal class DivisionObrnadzorViewModel: DivisionInfo
     {
-        const string linkFormat = "<span {2}><a href=\"{0}\" target=\"_blank\">{1}</a></span>";
-            
+        const string linkFormat = "<a href=\"{0}\" {2} target=\"_blank\"><i class=\"file \"></i> {1}</a>";
+
         protected ViewModelContext<DivisionDirectorySettings> Context { get; set; }
 
         public IOccupiedPosition HeadEmployeePosition { get; set; }
@@ -52,7 +32,7 @@ namespace R7.University.Divisions
                 var divisionString = "<span itemprop=\"name\">" + divisionTitle + "</span>";
 
                 if (!string.IsNullOrWhiteSpace (HomePage)) {
-                    divisionString = string.Format (linkFormat, 
+                    divisionString = string.Format (linkFormat,
                         Globals.LinkClick (HomePage, Context.Module.TabId, Context.Module.ModuleId),
                         divisionString, string.Empty);
                 }
@@ -64,11 +44,11 @@ namespace R7.University.Divisions
         public string WebSiteLink {
             get {
                 if (!string.IsNullOrWhiteSpace (WebSite)) {
-                    var webSiteUrl = WebSite.Contains ("://") ? WebSite.ToLowerInvariant () : 
+                    var webSiteUrl = WebSite.Contains ("://") ? WebSite.ToLowerInvariant () :
                         "http://" + WebSite.ToLowerInvariant ();
-                    var webSiteLabel = (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
+                    var webSiteLabel = (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel :
                         WebSite.Contains ("://") ? WebSite.Remove (0, WebSite.IndexOf ("://") + 3) : WebSite;
-                    
+
                     return string.Format (linkFormat, webSiteUrl, webSiteLabel, "itemprop=\"site\"");
                 }
 
@@ -86,19 +66,33 @@ namespace R7.University.Divisions
             }
         }
 
-        public string DocumentLink {
-            get {
-                // (main) document
-                if (!string.IsNullOrWhiteSpace (DocumentUrl)) {
-                    return string.Format (linkFormat, 
-                        Globals.LinkClick (DocumentUrl, Context.Module.TabId, Context.Module.ModuleId),
-                        Localization.GetString ("Regulations.Text", Context.LocalResourceFile),
-                        "itemprop=\"divisionClauseDocLink\""
-                    );
+        public string DocumentLink => RenderDocumentLink (DocumentUrl);
+
+        string RenderDocumentLink (string documentUrl)
+        {
+            if (!string.IsNullOrWhiteSpace (documentUrl)) {
+                var fa = FontAwesomeHelper.Instance;
+                var documentFile = UniversityFileHelper.Instance.GetFileByUrl (documentUrl);
+
+                var linkMarkup =
+                    $"<i class=\"fas fa-file-{fa.GetBaseIconNameByExtension(documentFile.Extension)}\""
+                    + $"style=\"color:{fa.GetBrandColorByExtension(documentFile.Extension)}\"></i>"
+                    + $" <a href=\"{UniversityUrlHelper.LinkClick (documentUrl, Context.Module.TabId, Context.Module.ModuleId)}\" "
+                    + "itemprop=\"divisionClauseDocLink\""
+                    + $" target=\"_blank\">{Context.LocalizeString ("Regulations.Text")}</a>";
+
+                var sigFile = UniversityFileHelper.Instance.GetSignatureFile (documentFile);
+
+                if (sigFile != null) {
+                    linkMarkup += "<span> + </span>"
+                                  + $"<a href=\"{UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId)}\" "
+                                  + $"title=\"{Context.LocalizeString ("Signature.Text")}\"><i class=\"fas fa-signature\"></i></a>";
                 }
 
-                return string.Empty;
+                return linkMarkup;
             }
+
+            return string.Empty;
         }
 
         public string LocationString {
@@ -146,7 +140,7 @@ namespace R7.University.Divisions
                 .Where (d => d.IsPublished (now) || viewModelContext.Module.IsEditable)
                 .Where (d => !d.IsInformal || viewModelContext.Settings.ShowInformal || viewModelContext.Module.IsEditable)
                 .ToList ();
-            
+
             WithHeadEmployeePositions (divisionViewModels);
             CalculateOrder (divisionViewModels);
 
@@ -173,9 +167,9 @@ namespace R7.University.Divisions
             var orderCounter = 1;
             var orderStack = new List<int> ();
             var returnStack = new Stack<DivisionObrnadzorViewModel> ();
-           
+
             DivisionObrnadzorViewModel prevDivision = null;
-           
+
             foreach (var division in divisions) {
                 if (prevDivision != null) {
                     if (division.ParentDivisionID == prevDivision.ParentDivisionID) {

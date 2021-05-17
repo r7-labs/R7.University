@@ -45,7 +45,4 @@
     <data name="linkBarcode.Text" xml:space="preserve">
         <value><![CDATA[<i class="fas fa-qrcode"></i> Показать QR-код]]></value>
     </data>
-	<data name="Signature.Text" xml:space="preserve">
-		<value>Цифровая подпись</value>
-	</data>
 </root>

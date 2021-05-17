@@ -54,9 +54,9 @@
     <data name="Order.Column" xml:space="preserve">
         <value>#</value>
     </data>
-    <data xml:space="preserve" name="Regulations.Text">
-        <value>[regulations]</value>
-    </data>
+	<data xml:space="preserve" name="Regulations.Text">
+		<value>Regulations</value>
+	</data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Search</value>
     </data>

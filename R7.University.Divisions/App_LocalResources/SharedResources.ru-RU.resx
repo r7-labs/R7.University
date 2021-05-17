@@ -27,4 +27,7 @@
 	<data name="Copy.Text" xml:space="preserve">
 		<value>Копировать</value>
 	</data>
+	<data name="Signature.Text" xml:space="preserve">
+		<value>Цифровая подпись</value>
+	</data>
 </root>
