@@ -17,45 +17,20 @@
             <asp:GridView id="gridDivisions" runat="server" Visible="false" AutoGenerateColumns="false"
                 UseAccessibleHeader="true" CssClass="table table-striped table-bordered table-hover grid-divisions"
                 GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridDivisions_RowDataBound">
-                <Columns>
-                    <asp:TemplateField>
+	            <Columns>
+					<asp:TemplateField>
                         <ItemTemplate>
                             <asp:HyperLink id="linkEdit" runat="server">
                                 <asp:Image id="iconEdit" runat="server" />
                             </asp:HyperLink>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Title.Column">
-                        <ItemTemplate>
-                            <asp:Label id="labelTitle" runat="server" />
-                            <asp:HyperLink id="linkTitle" runat="server" target="_blank" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Location.Column">
-                        <ItemTemplate>
-                            <asp:Literal id="literalLocation" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Phone.Column">
-                        <ItemTemplate>
-                            <asp:Literal id="literalPhone" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Email.Column">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkEmail" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Document.Column">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="HeadEmployee.Column">
-                        <ItemTemplate>
-                            <asp:Literal id="literalHeadEmployee" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    <asp:BoundField DataField="TitleLink" HeaderText="Title.Column" HtmlEncode="false" />
+					<asp:BoundField DataField="LocationString" HeaderText="Location.Column" HtmlEncode="false" />
+					<asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor.Column" HtmlEncode="false" />
+		            <asp:BoundField DataField="EmailLink" HeaderText="Email.Column" HtmlEncode="false" />
+		            <asp:BoundField DataField="Phone" HeaderText="Phone.Column" />
+					<asp:BoundField DataField="DocumentLink" HeaderText="Document.Column" HtmlEncode="false" />
                 </Columns>
             </asp:GridView>
         </asp:View>

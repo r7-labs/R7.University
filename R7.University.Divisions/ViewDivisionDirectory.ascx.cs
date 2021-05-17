@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
@@ -17,11 +16,11 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.Configuration;
 using R7.University.Divisions.Models;
 using R7.University.Divisions.Queries;
+using R7.University.Divisions.ViewModels;
 using R7.University.Dnn;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
-using R7.University.Utilities;
 
 namespace R7.University.Divisions
 {
@@ -223,7 +222,7 @@ namespace R7.University.Divisions
                 this.Message ("NoDivisionsFound.Warning", MessageType.Warning, true);
             }
 
-            gridDivisions.DataSource = divisions;
+            gridDivisions.DataSource = divisions.Select (d => new DivisionSearchViewModel (d, ViewModelContext));
             gridDivisions.DataBind ();
 
             // make divisions grid visible anyway
@@ -259,7 +258,7 @@ namespace R7.University.Divisions
             e.Row.Cells [0].Visible = IsEditable;
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                var division = (DivisionInfo) e.Row.DataItem;
+                var division = (DivisionSearchViewModel) e.Row.DataItem;
 
                 if (IsEditable) {
                     // get edit link controls
@@ -281,64 +280,6 @@ namespace R7.University.Divisions
 
                 if (division.IsGoverning) {
                     e.Row.AddCssClass ("u8y-governing-division");
-                }
-
-                var labelTitle = (Label) e.Row.FindControl ("labelTitle");
-                var linkTitle = (HyperLink) e.Row.FindControl ("linkTitle");
-                var literalPhone = (Literal) e.Row.FindControl ("literalPhone");
-                var linkEmail = (HyperLink) e.Row.FindControl ("linkEmail");
-                var literalLocation = (Literal) e.Row.FindControl ("literalLocation");
-                var linkDocument = (HyperLink) e.Row.FindControl ("linkDocument");
-                var literalHeadEmployee = (Literal) e.Row.FindControl ("literalHeadEmployee");
-
-                // division label / link
-                var divisionTitle = division.Title + ((UniversityModelHelper.HasUniqueShortTitle (division.ShortTitle, division.Title)) ? string.Format (
-                                        " ({0})",
-                                        division.ShortTitle) : string.Empty);
-                if (!string.IsNullOrWhiteSpace (division.HomePage)) {
-                    linkTitle.NavigateUrl = UniversityUrlHelper.FormatURL (this, division.HomePage, false);
-                    linkTitle.Text = divisionTitle;
-                    labelTitle.Visible = false;
-                }
-                else {
-                    labelTitle.Text = divisionTitle;
-                    linkTitle.Visible = false;
-                }
-
-                literalPhone.Text = division.Phone;
-                literalLocation.Text = division.Location;
-
-                // email
-                if (!string.IsNullOrWhiteSpace (division.Email)) {
-                    linkEmail.Text = division.Email;
-                    linkEmail.NavigateUrl = "mailto:" + division.Email;
-                }
-                else
-                    linkEmail.Visible = false;
-
-                // (main) document
-                if (!string.IsNullOrWhiteSpace (division.DocumentUrl)) {
-                    linkDocument.Text = LocalizeString ("Regulations.Text");
-                    linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
-                }
-                else
-                    linkDocument.Visible = false;
-
-                // get head employee
-                var headEmployee = new HeadEmployeesQuery (ModelContext)
-                    .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
-                    .FirstOrDefault (he => he.IsPublished (now));
-
-                if (headEmployee != null) {
-                    literalHeadEmployee.Text = "<a href=\""
-                    + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
-                    + "\" title=\"" + headEmployee.FullName () + "\">" + headEmployee.AbbrName () + "</a>";
-                }
-                else if (division.HeadPositionID != null) {
-                    literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
-                }
-                else {
-                    literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
                 }
             }
         }
