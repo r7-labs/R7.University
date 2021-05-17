@@ -9,7 +9,6 @@ namespace R7.University.Divisions
         protected GridView gridDivisions;
         protected TextBox textSearch;
         protected LinkButton linkSearch;
-        protected DnnTreeView treeDivisions;
         protected GridView gridObrnadzorDivisions;
         protected GridView gridObrnadzorGoverningDivisions;
     }

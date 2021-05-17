@@ -4,7 +4,6 @@
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Divisions/js/tree.js" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 
 <div class="dnnForm dnnClear division-directory">
@@ -13,19 +12,6 @@
             <asp:Panel runat="server" DefaultButton="linkSearch" CssClass="dnnFormItem dnnClear">
                 <div class="wrapperSearchFlags"></div>
                 <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
-                <div class="wrapperDivisions">
-                    <a id="linkDivisions" class="btn btn-outline-secondary linkDivisions" onclick="$('.division-directory #hiddenDivisions').toggle ()"></a>
-                    <div id="hiddenDivisions">
-                        <dnn:DnnTreeView id="treeDivisions" runat="server"
-                            OnClientLoad="dd_treeLoad"
-                            OnClientNodeClicked="dd_treeNodeClicked"
-                            DataTextField="Title"
-                            DataValueField="DivisionID"
-                            DataFieldID = "DivisionID"
-                            DataFieldParentID="ParentDivisionID"
-                        />
-                    </div>
-                </div>
                 <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="btn btn-primary linkSearch" OnClick="linkSearch_Click" />
             </asp:Panel>
             <asp:GridView id="gridDivisions" runat="server" Visible="false" AutoGenerateColumns="false"

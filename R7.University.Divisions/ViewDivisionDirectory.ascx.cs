@@ -1,24 +1,3 @@
-//
-//  ViewDivisionDirectory.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2014-2019 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,14 +14,12 @@ using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.Configuration;
 using R7.University.Divisions.Models;
 using R7.University.Divisions.Queries;
 using R7.University.Dnn;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Queries;
 using R7.University.Security;
 using R7.University.Utilities;
 
@@ -71,8 +48,6 @@ namespace R7.University.Divisions
 
         #endregion
 
-
-
         #region Session properties
 
         protected string SearchText
@@ -82,26 +57,6 @@ namespace R7.University.Divisions
                 return (string) objSearchText ?? string.Empty;
             }
             set { Session ["DivisionDirectory.SearchText." + TabModuleId] = value; }
-        }
-
-        protected int SearchDivision
-        {
-            get {
-                var objSearchDivision = Session ["DivisionDirectory.SearchDivision." + TabModuleId];
-                return objSearchDivision != null ? (int) objSearchDivision : Null.NullInteger;
-
-            }
-            set { Session ["DivisionDirectory.SearchDivision." + TabModuleId] = value; }
-        }
-
-        protected bool SearchIncludeSubdivisions
-        {
-            get {
-                var objSearchIncludeSubdivisions = Session ["DivisionDirectory.SearchIncludeSubdivisions." + TabModuleId];
-                return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : true;
-
-            }
-            set { Session ["DivisionDirectory.SearchIncludeSubdivisions." + TabModuleId] = value; }
         }
 
         #endregion
@@ -161,21 +116,6 @@ namespace R7.University.Divisions
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true);
 
-                var now = HttpContext.Current.Timestamp;
-                var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
-                    .Where (d => d.IsPublished (now) || IsEditable);
-
-                treeDivisions.DataSource = divisions;
-                treeDivisions.DataBind ();
-
-                // select first node
-                if (treeDivisions.Nodes.Count > 0) {
-                    treeDivisions.Nodes [0].Selected = true;
-                }
-
-                // TODO: Level should be set in settings?
-                R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
-
                 gridDivisions.LocalizeColumnHeaders (LocalResourceFile);
             }
             else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
@@ -199,25 +139,11 @@ namespace R7.University.Divisions
             try {
                 if (Settings.Mode == DivisionDirectoryMode.Search) {
                     if (!IsPostBack) {
-                        if (!string.IsNullOrWhiteSpace (SearchText) || !Null.IsNull (SearchDivision)) {
+                        if (!string.IsNullOrWhiteSpace (SearchText)) {
 
                             // restore current search
                             textSearch.Text = SearchText;
-
-                            if (Null.IsNull (SearchDivision)) {
-                                // select first node
-                                if (treeDivisions.Nodes.Count > 0) {
-                                    treeDivisions.Nodes [0].Selected = true;
-                                }
-                            }
-                            else {
-                                treeDivisions.SelectAndExpandByValue (SearchDivision.ToString ());
-                            }
-
-                            // perform search
-                            if (SearchParamsOK (SearchText, SearchDivision, false)) {
-                                DoSearch (SearchText, SearchDivision);
-                            }
+                            DoSearch (SearchText);
                         }
                     }
                 }
@@ -267,14 +193,12 @@ namespace R7.University.Divisions
 
         protected bool SearchParamsOK (
             string searchText,
-            int searchDivision,
             bool showMessages = true)
         {
-            var divisionNotSpecified = Null.IsNull (searchDivision);
             var searchTextIsEmpty = string.IsNullOrWhiteSpace (searchText);
 
             // no search params - shouldn't perform search
-            if (searchTextIsEmpty && divisionNotSpecified) {
+            if (searchTextIsEmpty) {
                 if (showMessages) {
                     this.Message ("SearchParams.Warning", MessageType.Warning, true);
                 }
@@ -286,12 +210,12 @@ namespace R7.University.Divisions
             return true;
         }
 
-        protected void DoSearch (string searchText, int searchDivision)
+        protected void DoSearch (string searchText)
         {
             var now = HttpContext.Current.Timestamp;
 
             // TODO: If parent division not published, ensure what child divisions also not
-            var divisions = new DivisionFindQuery (ModelContext).FindDivisions (searchText, searchDivision)
+            var divisions = new DivisionFindQuery (ModelContext).FindDivisions (searchText, -1)
                                                             .Where (d => d.IsPublished (now) || IsEditable)
                                                             .Where (d => !d.IsInformal || Settings.ShowInformal || IsEditable);
 
@@ -309,16 +233,13 @@ namespace R7.University.Divisions
         protected void linkSearch_Click (object sender, EventArgs e)
         {
             var searchText = textSearch.Text.Trim ();
-            var searchDivision = (treeDivisions.SelectedNode != null) ?
-                int.Parse (treeDivisions.SelectedNode.Value) : Null.NullInteger;
 
-            if (SearchParamsOK (searchText, searchDivision)) {
+            if (SearchParamsOK (searchText)) {
                 // save current search
                 SearchText = searchText;
-                SearchDivision = searchDivision;
 
                 // perform search
-                DoSearch (SearchText, SearchDivision);
+                DoSearch (SearchText);
             }
         }
 
