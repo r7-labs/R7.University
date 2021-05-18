@@ -47,11 +47,13 @@ class WorkbookConverter extends React.Component {
                     + "?fileName=" + encodeURIComponent (file.fileName)
                     + "&guid=" + encodeURIComponent (file.guid)
                     + "&format=LinearCSV"}>CSV</a>
-                    <span className="mx-2">|</span>
-                    <a href={this.props.service.getUrl ("WorkbookConverter", "ConvertOriginal", null)
-                    + "?fileName=" + encodeURIComponent (file.fileName)
-                    + "&guid=" + encodeURIComponent (file.guid)
-                    + "&format=LinearCSV_270"} className="text-muted">CSV (2.7.0)</a>
+                    <span className="d-none">
+                        <span className="mx-2">|</span>
+                        <a href={this.props.service.getUrl ("WorkbookConverter", "ConvertOriginal", null)
+                        + "?fileName=" + encodeURIComponent (file.fileName)
+                        + "&guid=" + encodeURIComponent (file.guid)
+                        + "&format=LinearCSV_270"} className="text-muted">CSV (2.7.0)</a>
+                    </span>
                 </td>
             </tr>
         );
