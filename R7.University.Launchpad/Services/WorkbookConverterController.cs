@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,10 +10,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
-using R7.University.Components;
 using R7.University.Templates;
 using R7.University.Launchpad.ViewModels;
 using R7.University.Models;
+using R7.University.Employees.Queries;
 
 namespace R7.University.Launchpad.Services
 {
@@ -128,14 +127,11 @@ namespace R7.University.Launchpad.Services
 
             var bookInfo = workbookManager.ReadWorkbookInfo (filePath);
             if (bookInfo.EntityId != null && !string.IsNullOrEmpty (bookInfo.EntityType)) {
-                using (var modelContext = new UniversityModelContext ()) {
-                    var employee = modelContext.Get<EmployeeInfo, int> (bookInfo.EntityId.Value);
-                    if (employee != null) {
-                        return GetEmployeeCsvText (employee, serializer);
-                    }
+                var employee = GetEmployee (bookInfo.EntityId.Value);
+                if (employee != null) {
+                    return GetEmployeeCsvText (employee, serializer);
                 }
             }
-
             return null;
         }
 
@@ -151,6 +147,14 @@ namespace R7.University.Launchpad.Services
                 .GetEmployeeTemplateEngine (employee, PortalSettings);
 
             return templateEngine.ApplyAndSerialize (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), serializer).ToString ();
+        }
+
+        // TODO: Don't reference EmployeeQuery from R7.University.Employees assembly
+        IEmployee GetEmployee (int employeeId)
+        {
+            using (var modelContext = new UniversityModelContext ()) {
+                return new EmployeeQuery (modelContext).SingleOrDefault (employeeId);
+            }
         }
     }
 }
