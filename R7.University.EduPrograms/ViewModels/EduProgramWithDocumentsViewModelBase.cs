@@ -70,6 +70,12 @@ namespace R7.University.EduPrograms.ViewModels
                 var fa = FontAwesomeHelper.Instance;
                 var documentFile = UniversityFileHelper.Instance.GetFileByUrl (document.Url);
 
+                if (documentFile == null) {
+                    return $" <a href=\"{UniversityUrlHelper.LinkClick (document.Url, Context.Module.TabId, Context.Module.ModuleId)}\" "
+                        + FormatHelper.JoinNotNullOrEmpty (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
+                        + $" target=\"_blank\">{title}</a>";
+                }
+
                 var linkMarkup =
                     $"<i class=\"fas fa-file-{fa.GetBaseIconNameByExtension(documentFile.Extension)}\""
                     + $"style=\"color:{fa.GetBrandColorByExtension(documentFile.Extension)}\"></i>"
@@ -78,13 +84,10 @@ namespace R7.University.EduPrograms.ViewModels
                     + $" target=\"_blank\">{title}</a>";
 
                 var sigFile = UniversityFileHelper.Instance.GetSignatureFile (documentFile);
-
                 if (sigFile != null) {
                     linkMarkup += "<span> + </span>"
                                   + $"<a href=\"{UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId)}\" "
                                   + $"title=\"{Context.LocalizeString ("Signature.Text")}\"><i class=\"fas fa-signature\"></i></a>";
-
-
                 }
 
                 return linkMarkup;

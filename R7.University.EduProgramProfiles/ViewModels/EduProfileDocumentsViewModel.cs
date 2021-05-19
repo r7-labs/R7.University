@@ -126,7 +126,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
             _signatureColumnHeader ?? (_signatureColumnHeader =
                 Localization.GetString ("DocumentSignature_Column.Text", Context.LocalResourceFile));
 
-        string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string columnSlug, string microdata = "",
+        string RenderDocumentsLinkWithData (IEnumerable<IDocument> documents, string columnSlug, string microdata = "",
             string noLinksText = "-")
         {
             var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
@@ -141,7 +141,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 );
 
                 foreach (var document in documents) {
-                    GenerateDocumentsTableRow (table, document);
+                    RenderDocumentsTableRow (table, document);
                 }
 
                 table.Append ("</tbody></table></span>");
@@ -151,17 +151,18 @@ namespace R7.University.EduProgramProfiles.ViewModels
             return $"<span{microdataAttrs}>{noLinksText}</span>";
         }
 
-        void GenerateDocumentsTableRow (StringBuilder table, IDocument document)
+        void RenderDocumentsTableRow (StringBuilder table, IDocument document)
         {
             var docTitle = !string.IsNullOrEmpty (document.Title)
                 ? document.Title
                 : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
-            var docUrl =
-                UniversityUrlHelper.LinkClick (document.Url, Context.Module.TabId, Context.Module.ModuleId);
 
-            var sigFile =
-                UniversityFileHelper.Instance.GetSignatureFile (
-                    UniversityFileHelper.Instance.GetFileByUrl (document.Url));
+            var docUrl = UniversityUrlHelper.LinkClick (document.Url, Context.Module.TabId, Context.Module.ModuleId);
+
+            var docFile = UniversityFileHelper.Instance.GetFileByUrl (document.Url);
+
+            var sigFile = docFile != null? UniversityFileHelper.Instance.GetSignatureFile (docFile) : null;
+
             var sigUrl = sigFile != null
                 ? UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId,
                     Context.Module.ModuleId)
@@ -173,7 +174,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
             table.Append ($"<tr{rowCssClassAttr}>");
             table.Append ($"<td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td>");
-            if (sigFile != null) {
+            if (!string.IsNullOrEmpty (sigUrl)) {
                 table.Append ($"<td><a href=\"{sigUrl}\"><i class=\"fas fa-signature\" title=\"{Context.LocalizeString ("Signature.Text")}\"></i></a></td>");
             }
             else {
@@ -189,7 +190,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 UniversityFormatHelper.FormatEduProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                     .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ")
                 + " "
-                + FormatDocumentsLinkWithData (
+                + RenderDocumentsLinkWithData (
                     GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
                     "oop",
                     IsAdopted ? "itemprop=\"adOpMain\"" : "itemprop=\"opMain\"",
@@ -199,7 +200,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string GetEduPlanLinks ()
         {
-            return FormatDocumentsLinkWithData (
+            return RenderDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
                 "epl",
                 IsAdopted ? "itemprop=\"adEducationPlan\"" : "itemprop=\"educationPlan\""
@@ -208,7 +209,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string GetEduScheduleLinks ()
         {
-            return FormatDocumentsLinkWithData (
+            return RenderDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
                 "esh",
                 IsAdopted ? "itemprop=\"adEducationShedule\"" : "itemprop=\"educationShedule\""
@@ -217,7 +218,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string GetWorkProgramAnnotationLinks ()
         {
-            return FormatDocumentsLinkWithData (
+            return RenderDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
                 "wpa",
                 IsAdopted ? "itemprop=\"adEducationAnnotation\"" : "itemprop=\"educationAnnotation\""
@@ -226,7 +227,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string GetEduMaterialLinks ()
         {
-            return FormatDocumentsLinkWithData (
+            return RenderDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
                 "met",
                 IsAdopted ? "itemprop=\"adMethodology\"" : "itemprop=\"methodology\""
@@ -235,7 +236,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string GetWorkProgramLinks ()
         {
-            return FormatDocumentsLinkWithData (
+            return RenderDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.WorkProgram)),
                 "wp",
                 // TODO: This related to obsolete WorkProgramOfPractice document type

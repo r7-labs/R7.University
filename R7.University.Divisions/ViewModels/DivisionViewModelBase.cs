@@ -135,6 +135,12 @@ namespace R7.University.Divisions.ViewModels
                 var fa = FontAwesomeHelper.Instance;
                 var documentFile = UniversityFileHelper.Instance.GetFileByUrl (documentUrl);
 
+                if (documentFile == null) {
+                    return $" <a href=\"{UniversityUrlHelper.LinkClick (documentUrl, Dnn.Module.TabId, Dnn.Module.ModuleId)}\" "
+                           + "itemprop=\"divisionClauseDocLink\""
+                           + $" target=\"_blank\">{Dnn.LocalizeString ("Regulations.Text")}</a>";
+                }
+
                 var linkMarkup =
                     $"<i class=\"fas fa-file-{fa.GetBaseIconNameByExtension(documentFile.Extension)}\""
                     + $"style=\"color:{fa.GetBrandColorByExtension(documentFile.Extension)}\"></i>"
@@ -143,7 +149,6 @@ namespace R7.University.Divisions.ViewModels
                     + $" target=\"_blank\">{Dnn.LocalizeString ("Regulations.Text")}</a>";
 
                 var sigFile = UniversityFileHelper.Instance.GetSignatureFile (documentFile);
-
                 if (sigFile != null) {
                     linkMarkup += "<span> + </span>"
                                   + $"<a href=\"{UniversityUrlHelper.LinkClickFile (sigFile.FileId, Dnn.Module.TabId, Dnn.Module.ModuleId)}\" "

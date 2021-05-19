@@ -4,14 +4,10 @@ using System.Linq;
 using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Content.Taxonomy;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Portals;
-using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.Configuration;
 using R7.University.Divisions.Models;
 using R7.University.ModelExtensions;
@@ -142,6 +138,8 @@ namespace R7.University.Divisions.ViewModels
 
         IFileInfo GetCachedDocumentFile () =>
             _documentFile ?? (_documentFile = UniversityFileHelper.Instance.GetFileByUrl (Division.DocumentUrl));
+
+        public IFileInfo DocumentFile => GetCachedDocumentFile ();
 
         public string DocumentSignatureFileUrl {
             get {

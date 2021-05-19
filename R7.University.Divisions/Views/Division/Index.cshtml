@@ -45,12 +45,14 @@
         @if (!string.IsNullOrWhiteSpace (Model.DocumentUrl)) {
 	        <div class="_section">
 		        <a href="@Model.DocumentUrl" target="_blank">
-			        @{ var fa = FontAwesomeHelper.Instance; }
-			        <i class="fas fa-file-@fa.GetBaseIconNameByExtension(Model.DocumentFileExtension)"
-			           style="color:@fa.GetBrandColorByExtension(Model.DocumentFileExtension)"></i>
+					@if (Model.DocumentFile != null) {
+						var fa = FontAwesomeHelper.Instance;
+						<i class="fas fa-file-@fa.GetBaseIconNameByExtension(Model.DocumentFileExtension)"
+						   style="color:@fa.GetBrandColorByExtension(Model.DocumentFileExtension)"></i>
+					}
 			        @Dnn.LocalizeString("DocumentUrl.Text")
 		        </a>
-		        @if (!string.IsNullOrEmpty (Model.DocumentSignatureFileUrl)) {
+		        @if (Model.DocumentFile != null && !string.IsNullOrEmpty (Model.DocumentSignatureFileUrl)) {
 			        <span> + </span>
 			        <a href="@Model.DocumentSignatureFileUrl" title='@Dnn.LocalizeString("Signature.Text")'>
 				        <i class="fas fa-signature"></i>
